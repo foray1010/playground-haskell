@@ -25,17 +25,6 @@ dependencies:
 library:
   source-dirs: src
 
-executables:
-  playground-haskell-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - playground-haskell
-
 tests:
   playground-haskell-test:
     main:                Spec.hs
