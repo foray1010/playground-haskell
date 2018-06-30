@@ -1,10 +1,7 @@
 name:                playground-haskell
 version:             0.1.0.0
 github:              "foray1010/playground-haskell"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2018 Author name here"
+license:             MIT
 
 extra-source-files:
 - README.md
