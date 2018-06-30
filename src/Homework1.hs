@@ -23,10 +23,7 @@ doubleEveryOther = reverse . zipWith (*) (cycle [1,2]) . reverse
 
 -- exercise3 start
 sumDigits :: [Integer] -> Integer
-sumDigits [] = 0
-sumDigits (x:xs)
-  | null xs = x
-  | otherwise = sum (toDigits x) + sumDigits xs
+sumDigits = foldr ((+) . sum . toDigits) 0
 -- exercise3 end
 
 -- exercise4 start
