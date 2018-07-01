@@ -10,7 +10,7 @@ module Homework1 (
 toDigits :: Integer -> [Integer]
 toDigits n
   | n <= 0 = []
-  | otherwise = toDigits (n `div` 10) ++ [mod n 10]
+  | otherwise = toDigits (n `div` 10) ++ [n `mod` 10]
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev = reverse . toDigits
@@ -18,7 +18,7 @@ toDigitsRev = reverse . toDigits
 
 -- exercise2 start
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther = reverse . zipWith (*) (cycle [1,2]) . reverse
+doubleEveryOther = reverse . zipWith (*) (cycle [1, 2]) . reverse
 -- exercise2 end
 
 -- exercise3 start
