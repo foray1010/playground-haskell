@@ -1,5 +1,6 @@
 module Homework1 (
   doubleEveryOther,
+  hanoi,
   sumDigits,
   toDigits,
   toDigitsRev,
@@ -30,3 +31,16 @@ sumDigits = foldr ((+) . sum . toDigits) 0
 validate :: Integer -> Bool
 validate = (==) 0 . flip mod 10 . sumDigits . doubleEveryOther . toDigits
 -- exercise4 end
+
+-- exercise5 start
+type Peg = String
+type Move = (Peg,Peg)
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi n src dest tmp
+  | n == 0 = []
+  | n == 1 = [(src, dest)]
+  | otherwise =
+      hanoi (n - 1) src tmp dest ++
+      hanoi 1 src dest tmp ++
+      hanoi (n - 1) tmp dest src
+-- exercise5 end

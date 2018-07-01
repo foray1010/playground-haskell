@@ -27,3 +27,32 @@ main = hspec $ describe "Homework1" $ do
     validate 4012888888881881 `shouldBe` True
     validate 4012888888881882 `shouldBe` False
     validate 0 `shouldBe` True
+
+  it "hanoi" $ do
+    hanoi 0 "a" "b" "a" `shouldBe` []
+    hanoi 1 "a" "b" "c" `shouldBe` [("a", "b")]
+    hanoi 2 "a" "b" "c" `shouldBe` [("a", "c"), ("a", "b"), ("c", "b")]
+    hanoi 3 "a" "b" "c" `shouldBe` [
+      ("a", "b"),
+      ("a", "c"),
+      ("b", "c"),
+      ("a", "b"),
+      ("c", "a"),
+      ("c", "b"),
+      ("a", "b")]
+    hanoi 4 "a" "b" "c" `shouldBe` [
+      ("a", "c"),
+      ("a", "b"),
+      ("c", "b"),
+      ("a", "c"),
+      ("b", "a"),
+      ("b", "c"),
+      ("a", "c"),
+      ("a", "b"),
+      ("c", "b"),
+      ("c", "a"),
+      ("b", "a"),
+      ("c", "b"),
+      ("a", "c"),
+      ("a", "b"),
+      ("c", "b")]
