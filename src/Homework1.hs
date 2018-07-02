@@ -7,7 +7,7 @@ module Homework1 (
   validate,
 ) where
 
--- exercise1 start
+-- ex1 start
 toDigits :: Integer -> [Integer]
 toDigits n
   | n <= 0 = []
@@ -15,24 +15,24 @@ toDigits n
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev = reverse . toDigits
--- exercise1 end
+-- ex1 end
 
--- exercise2 start
+-- ex2 start
 doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther = reverse . zipWith (*) (cycle [1, 2]) . reverse
--- exercise2 end
+-- ex2 end
 
--- exercise3 start
+-- ex3 start
 sumDigits :: [Integer] -> Integer
 sumDigits = foldr ((+) . sum . toDigits) 0
--- exercise3 end
+-- ex3 end
 
--- exercise4 start
+-- ex4 start
 validate :: Integer -> Bool
 validate = (==) 0 . flip mod 10 . sumDigits . doubleEveryOther . toDigits
--- exercise4 end
+-- ex4 end
 
--- exercise5 start
+-- ex5 start
 type Peg = String
 type Move = (Peg,Peg)
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
@@ -43,4 +43,7 @@ hanoi n src dest tmp
       hanoi (n - 1) src tmp dest ++
       hanoi 1 src dest tmp ++
       hanoi (n - 1) tmp dest src
--- exercise5 end
+-- ex5 end
+
+-- ex6 start
+-- ex6 end
