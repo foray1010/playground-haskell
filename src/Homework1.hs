@@ -1,11 +1,4 @@
-module Homework1 (
-  doubleEveryOther,
-  hanoi,
-  sumDigits,
-  toDigits,
-  toDigitsRev,
-  validate,
-) where
+module Homework1 where
 
 -- ex1 start
 toDigits :: Integer -> [Integer]
