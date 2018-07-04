@@ -2,7 +2,7 @@ module Homework1Spec (homework1Spec) where
 
 import Test.Hspec
 
-import Homework1
+import Homework1.Homework1
 
 homework1Spec :: Spec
 homework1Spec = describe "Homework1" $ do
