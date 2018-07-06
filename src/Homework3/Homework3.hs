@@ -15,3 +15,12 @@ skips xs =
   replicate (length xs) $
   xs
 -- ex1 end
+
+-- ex2 start
+localMaxima :: [Integer] -> [Integer]
+localMaxima (x:y:z:zs) = [y | y > x && y > z] ++ localMaxima (y:z:zs)
+localMaxima _ = []
+-- ex2 end
+
+-- ex3 start
+-- ex3 end
