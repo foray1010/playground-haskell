@@ -20,3 +20,23 @@ homework3Spec = describe "Homework3" $ do
     localMaxima [1, 2] `shouldBe` []
     localMaxima [1] `shouldBe` []
     localMaxima [] `shouldBe` []
+
+  it "ex3: histogram" $ do
+    histogram [1, 1, 1, 5] `shouldBe` unlines [
+      " *        ",
+      " *        ",
+      " *   *    ",
+      "==========",
+      "0123456789"]
+
+    histogram [1, 4, 5, 4, 6, 6, 3, 4, 2, 4, 9] `shouldBe` unlines [
+      "    *     ",
+      "    *     ",
+      "    * *   ",
+      " ******  *",
+      "==========",
+      "0123456789"]
+
+    histogram [] `shouldBe` unlines [
+      "==========",
+      "0123456789"]

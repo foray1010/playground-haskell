@@ -1,6 +1,8 @@
 module Homework3.Homework3 where
 
-withPosition :: [a] -> [(a, Int)]
+import Data.List
+
+withPosition :: [a] -> [(a, Integer)]
 withPosition = flip zip [1..]
 
 -- ex1 start
@@ -23,4 +25,17 @@ localMaxima _ = []
 -- ex2 end
 
 -- ex3 start
+histogram :: [Integer] -> String
+histogram =
+  flip (++) "==========\n0123456789\n" .
+  unlines .
+  map (\x ->
+    map (\(_, y) -> if y - 1 `elem` x then '*' else ' ') .
+    withPosition $
+    "          "
+  ) .
+  reverse .
+  transpose .
+  group .
+  sort
 -- ex3 end
