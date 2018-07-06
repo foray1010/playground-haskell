@@ -1,7 +1,7 @@
 module Homework3.Homework3 where
 
 withPosition :: [a] -> [(a, Int)]
-withPosition xs = zip xs [1..length xs]
+withPosition = flip zip [1..]
 
 -- ex1 start
 skips :: [a] -> [[a]]
