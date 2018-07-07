@@ -30,7 +30,7 @@ histogram =
   flip (++) "==========\n0123456789\n" .
   unlines .
   map (\x ->
-    map (\(_, y) -> if y - 1 `elem` x then '*' else ' ') .
+    map (\(y, z) -> if z - 1 `elem` x then '*' else y) .
     withPosition $
     "          "
   ) .
