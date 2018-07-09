@@ -13,6 +13,12 @@ fun2 =
 -- ex1 end
 
 -- ex2 start
+data Tree a = Leaf
+  | Node Integer (Tree a) a (Tree a)
+  deriving (Show, Eq)
+
+foldTree :: [a] -> Tree a
+foldTree _ = Leaf
 -- ex2 end
 
 -- ex3 start

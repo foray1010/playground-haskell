@@ -18,3 +18,21 @@ homework4Spec = describe "Homework4" $ do
     fun2 3 `shouldBe` 40
     fun2 4 `shouldBe` 6
     fun2 5 `shouldBe` 30
+
+  {-
+  it "ex2: foldTree" $ do
+    foldTree "" `shouldBe` Leaf
+
+    foldTree "A" `shouldBe` Node 0 Leaf 'A' Leaf
+
+    foldTree "ABCDEFGHIJ" `shouldBe` Node 3
+      (Node 2
+        (Node 0 Leaf 'F' Leaf)
+        'I'
+        (Node 1 (Node 0 Leaf 'B' Leaf) 'C' Leaf))
+      'J'
+      (Node 2
+        (Node 1 (Node 0 Leaf 'A' Leaf) 'G' Leaf)
+        'H'
+        (Node 1 (Node 0 Leaf 'D' Leaf) 'E' Leaf))
+  -}
