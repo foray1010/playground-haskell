@@ -22,6 +22,14 @@ foldTree _ = Leaf
 -- ex2 end
 
 -- ex3 start
+xor :: [Bool] -> Bool
+xor = foldr (\x y -> if x then not y else y) False
+
+map' :: (a -> b) -> [a] -> [b]
+map' f = foldr (\x y -> f x:y) []
+
+myFoldl :: (a -> b -> a) -> a -> [b] -> a
+myFoldl f base = foldr (flip f) base . reverse
 -- ex3 end
 
 -- ex4 start

@@ -36,3 +36,19 @@ homework4Spec = describe "Homework4" $ do
         'H'
         (Node 1 (Node 0 Leaf 'D' Leaf) 'E' Leaf))
   -}
+
+  it "ex3: xor" $ do
+    xor [] `shouldBe` False
+    xor [True] `shouldBe` True
+    xor [False, True] `shouldBe` True
+    xor [False, True, False] `shouldBe` True
+    xor [False, True, False, False, True] `shouldBe` False
+
+  it "ex3: map'" $ do
+    map' show [0] `shouldBe` ["0"]
+    map' show [0, 1] `shouldBe` ["0", "1"]
+
+  it "ex3: myFoldl'" $ do
+    myFoldl (-) 2 [] `shouldBe` 2
+    myFoldl (-) 2 [1] `shouldBe` 1
+    myFoldl (-) 2 [1, 3] `shouldBe` -2
