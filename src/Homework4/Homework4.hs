@@ -1,5 +1,7 @@
 module Homework4.Homework4 where
 
+import Data.List ((\\))
+
 -- ex1 start
 fun1 :: [Integer] -> Integer
 fun1 = product . map (subtract 2) . filter even
@@ -33,4 +35,13 @@ myFoldl f base = foldr (flip f) base . reverse
 -- ex3 end
 
 -- ex4 start
+cartProd :: [a] -> [b] -> [(a, b)]
+cartProd xs ys = [(x, y) | x <- xs, y <- ys]
+
+sieveSundaram :: Integer -> [Integer]
+sieveSundaram n =
+  map (\x -> 2 * x + 1) .
+  (\\) [1..n] .
+  map (\(i, j) -> i + j + 2 * i * j) $
+  cartProd [1..n] [1..n]
 -- ex4 end

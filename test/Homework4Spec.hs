@@ -48,7 +48,16 @@ homework4Spec = describe "Homework4" $ do
     map' show [0] `shouldBe` ["0"]
     map' show [0, 1] `shouldBe` ["0", "1"]
 
-  it "ex3: myFoldl'" $ do
+  it "ex3: myFoldl" $ do
     myFoldl (-) 2 [] `shouldBe` 2
     myFoldl (-) 2 [1] `shouldBe` 1
     myFoldl (-) 2 [1, 3] `shouldBe` -2
+
+  it "ex4: cartProd" $
+    cartProd [1, 2] ['a', 'b'] `shouldBe` [(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]
+
+  it "ex4: sieveSundaram" $ do
+    sieveSundaram 0 `shouldBe` []
+    sieveSundaram 1 `shouldBe` [3]
+    sieveSundaram 10 `shouldBe` [3, 5, 7, 11, 13, 17, 19]
+    sieveSundaram 20 `shouldBe` [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
