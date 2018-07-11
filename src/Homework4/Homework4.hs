@@ -19,7 +19,15 @@ data Tree a = Leaf
   | Node Integer (Tree a) a (Tree a)
   deriving (Show, Eq)
 
+split :: [a] -> ([a], [a])
+split xs = splitAt (div (length xs + 1) 2) xs
+
 foldTree :: [a] -> Tree a
+foldTree (x:xs) = Node
+  (floor . logBase 2 . fromIntegral $ length xs + 1)
+  (foldTree . fst . split $ xs)
+  x
+  (foldTree . snd . split $ xs)
 foldTree _ = Leaf
 -- ex2 end
 

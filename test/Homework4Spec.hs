@@ -19,7 +19,6 @@ homework4Spec = describe "Homework4" $ do
     fun2 4 `shouldBe` 6
     fun2 5 `shouldBe` 30
 
-  {-
   it "ex2: foldTree" $ do
     foldTree "" `shouldBe` Leaf
 
@@ -27,15 +26,14 @@ homework4Spec = describe "Homework4" $ do
 
     foldTree "ABCDEFGHIJ" `shouldBe` Node 3
       (Node 2
-        (Node 0 Leaf 'F' Leaf)
-        'I'
-        (Node 1 (Node 0 Leaf 'B' Leaf) 'C' Leaf))
-      'J'
+        (Node 1 (Node 0 Leaf 'D' Leaf) 'C' Leaf)
+        'B'
+        (Node 1 (Node 0 Leaf 'F' Leaf) 'E' Leaf))
+      'A'
       (Node 2
-        (Node 1 (Node 0 Leaf 'A' Leaf) 'G' Leaf)
-        'H'
-        (Node 1 (Node 0 Leaf 'D' Leaf) 'E' Leaf))
-  -}
+        (Node 1 (Node 0 Leaf 'I' Leaf) 'H' Leaf)
+        'G'
+        (Node 0 Leaf 'J' Leaf))
 
   it "ex3: xor" $ do
     xor [] `shouldBe` False
