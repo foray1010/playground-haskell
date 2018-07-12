@@ -1,6 +1,7 @@
 module Homework5.Homework5 where
 
 import Homework5.ExprT
+import Homework5.Parser
 
 -- ex1 start
 eval :: ExprT -> Integer
@@ -10,6 +11,8 @@ eval (Mul x y) = eval x * eval y
 -- ex1 end
 
 -- ex2 start
+evalStr :: String -> Maybe Integer
+evalStr = fmap eval . parseExp Lit Add Mul
 -- ex2 end
 
 -- ex3 start
