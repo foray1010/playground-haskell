@@ -16,6 +16,18 @@ evalStr = fmap eval . parseExp Lit Add Mul
 -- ex2 end
 
 -- ex3 start
+class Expr a where
+  lit :: Integer -> a
+  add :: a -> a -> a
+  mul :: a -> a -> a
+
+instance Expr ExprT where
+  lit = Lit
+  add = Add
+  mul = Mul
+
+reify :: ExprT -> ExprT
+reify = id
 -- ex3 end
 
 -- ex4 start
