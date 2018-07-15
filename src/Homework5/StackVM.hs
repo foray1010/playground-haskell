@@ -11,7 +11,7 @@ data StackExp = PushI Integer
               | Mul
               | And
               | Or
-                deriving Show
+                deriving (Eq, Show)
 
 type Stack   = [StackVal]
 type Program = [StackExp]

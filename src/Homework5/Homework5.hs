@@ -1,18 +1,21 @@
+{-# LANGUAGE FlexibleInstances, TypeSynonymInstances #-}
+
 module Homework5.Homework5 where
 
-import Homework5.ExprT
+import Homework5.ExprT as ExprT
 import Homework5.Parser
+import Homework5.StackVM as StackVM
 
 -- ex1 start
 eval :: ExprT -> Integer
 eval (Lit x) = x
-eval (Add x y) = eval x + eval y
-eval (Mul x y) = eval x * eval y
+eval (ExprT.Add x y) = eval x + eval y
+eval (ExprT.Mul x y) = eval x * eval y
 -- ex1 end
 
 -- ex2 start
 evalStr :: String -> Maybe Integer
-evalStr = fmap eval . parseExp Lit Add Mul
+evalStr = fmap eval . parseExp Lit ExprT.Add ExprT.Mul
 -- ex2 end
 
 -- ex3 start
@@ -23,8 +26,8 @@ class Expr a where
 
 instance Expr ExprT where
   lit = Lit
-  add = Add
-  mul = Mul
+  add = ExprT.Add
+  mul = ExprT.Mul
 
 reify :: ExprT -> ExprT
 reify = id
@@ -55,6 +58,10 @@ instance Expr Mod7 where
 -- ex4 end
 
 -- ex5 start
+instance Expr Program where
+  lit = (:[]) . PushI
+  add x y = x ++ y ++ [StackVM.Add]
+  mul x y = x ++ y ++ [StackVM.Mul]
 -- ex5 end
 
 -- ex6 start
