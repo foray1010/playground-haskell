@@ -2,20 +2,20 @@
 
 module Homework5.Homework5 where
 
-import Homework5.ExprT as ExprT
-import Homework5.Parser
-import Homework5.StackVM as StackVM
+import qualified Homework5.ExprT as ExprT
+import qualified Homework5.Parser as Parser
+import qualified Homework5.StackVM as StackVM
 
 -- ex1 start
-eval :: ExprT -> Integer
-eval (Lit x) = x
+eval :: ExprT.ExprT -> Integer
+eval (ExprT.Lit x) = x
 eval (ExprT.Add x y) = eval x + eval y
 eval (ExprT.Mul x y) = eval x * eval y
 -- ex1 end
 
 -- ex2 start
 evalStr :: String -> Maybe Integer
-evalStr = fmap eval . parseExp Lit ExprT.Add ExprT.Mul
+evalStr = fmap eval . Parser.parseExp ExprT.Lit ExprT.Add ExprT.Mul
 -- ex2 end
 
 -- ex3 start
@@ -24,12 +24,12 @@ class Expr a where
   add :: a -> a -> a
   mul :: a -> a -> a
 
-instance Expr ExprT where
-  lit = Lit
+instance Expr ExprT.ExprT where
+  lit = ExprT.Lit
   add = ExprT.Add
   mul = ExprT.Mul
 
-reify :: ExprT -> ExprT
+reify :: ExprT.ExprT -> ExprT.ExprT
 reify = id
 -- ex3 end
 
@@ -58,8 +58,8 @@ instance Expr Mod7 where
 -- ex4 end
 
 -- ex5 start
-instance Expr Program where
-  lit = (:[]) . PushI
+instance Expr StackVM.Program where
+  lit = (:[]) . StackVM.PushI
   add x y = x ++ y ++ [StackVM.Add]
   mul x y = x ++ y ++ [StackVM.Mul]
 -- ex5 end

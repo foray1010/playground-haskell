@@ -1,15 +1,19 @@
-import Test.Hspec
+import qualified Test.Hspec as Hspec
 
-import Homework1Spec
-import Homework2Spec
-import Homework3Spec
-import Homework4Spec
-import Homework5Spec
+import qualified Homework1Spec as HW1Spec
+import qualified Homework2Spec as HW2Spec
+import qualified Homework3Spec as HW3Spec
+import qualified Homework4Spec as HW4Spec
+import qualified Homework5Spec as HW5Spec
 
 main :: IO ()
-main = hspec $ parallel $ describe "test suite" $ do
-  homework1Spec
-  homework2Spec
-  homework3Spec
-  homework4Spec
-  homework5Spec
+main =
+  Hspec.hspec $
+  Hspec.parallel $
+  Hspec.describe "test suite" $
+  do
+    HW1Spec.homework1Spec
+    HW2Spec.homework2Spec
+    HW3Spec.homework3Spec
+    HW4Spec.homework4Spec
+    HW5Spec.homework5Spec
