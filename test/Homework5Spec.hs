@@ -1,4 +1,4 @@
-module Homework5Spec (homework5Spec) where
+module Homework5Spec where
 
 import qualified Test.Hspec as Hspec
 
@@ -16,8 +16,8 @@ testMM = testExp :: Maybe HW.MinMax
 testSat = testExp :: Maybe HW.Mod7
 testProgram = testExp :: Maybe StackVM.Program
 
-homework5Spec :: Hspec.Spec
-homework5Spec = Hspec.describe "Homework5" $ do
+spec :: Hspec.Spec
+spec = Hspec.describe "Homework5" $ do
   Hspec.it "ex1: eval" $ do
     HW.eval (ExprT.Lit 1) `Hspec.shouldBe` 1
     HW.eval (ExprT.Mul (ExprT.Add (ExprT.Lit 2) (ExprT.Lit 3)) (ExprT.Lit 4))

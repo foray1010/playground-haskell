@@ -1,11 +1,11 @@
-module Homework3Spec (homework3Spec) where
+module Homework3Spec where
 
 import Test.Hspec
 
 import Homework3.Homework3
 
-homework3Spec :: Spec
-homework3Spec = describe "Homework3" $ do
+spec :: Spec
+spec = describe "Homework3" $ do
   it "ex1: skips" $ do
     skips "ABCD" `shouldBe` ["ABCD", "BD", "C", "D"]
     skips "hello!" `shouldBe` ["hello!", "el!", "l!", "l", "o", "!"]

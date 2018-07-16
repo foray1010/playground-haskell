@@ -1,12 +1,12 @@
-module Homework2Spec (homework2Spec) where
+module Homework2Spec where
 
 import Test.Hspec
 
 import Homework2.Homework2
 import Homework2.Log
 
-homework2Spec :: Spec
-homework2Spec = describe "Homework2" $ do
+spec :: Spec
+spec = describe "Homework2" $ do
   it "ex1: parseMessage" $ do
     parseMessage "E 2 562 help help" `shouldBe`
       LogMessage (Error 2) 562 "help help"

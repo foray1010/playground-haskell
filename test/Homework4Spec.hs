@@ -1,11 +1,11 @@
-module Homework4Spec (homework4Spec) where
+module Homework4Spec where
 
 import Test.Hspec
 
 import Homework4.Homework4
 
-homework4Spec :: Spec
-homework4Spec = describe "Homework4" $ do
+spec :: Spec
+spec = describe "Homework4" $ do
   it "ex1: fun1" $ do
     fun1 [] `shouldBe` 1
     fun1 [0] `shouldBe` -2

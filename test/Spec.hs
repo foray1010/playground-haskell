@@ -12,8 +12,8 @@ main =
   Hspec.parallel $
   Hspec.describe "test suite" $
   do
-    HW1Spec.homework1Spec
-    HW2Spec.homework2Spec
-    HW3Spec.homework3Spec
-    HW4Spec.homework4Spec
-    HW5Spec.homework5Spec
+    HW1Spec.spec
+    HW2Spec.spec
+    HW3Spec.spec
+    HW4Spec.spec
+    HW5Spec.spec

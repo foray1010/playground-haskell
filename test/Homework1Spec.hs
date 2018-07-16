@@ -1,11 +1,11 @@
-module Homework1Spec (homework1Spec) where
+module Homework1Spec where
 
 import Test.Hspec
 
 import Homework1.Homework1
 
-homework1Spec :: Spec
-homework1Spec = describe "Homework1" $ do
+spec :: Spec
+spec = describe "Homework1" $ do
   it "ex1: toDigits" $ do
     toDigits 1234 `shouldBe` [1, 2, 3, 4]
     toDigits 0 `shouldBe` []
