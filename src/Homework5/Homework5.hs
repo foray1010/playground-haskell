@@ -2,6 +2,8 @@
 
 module Homework5.Homework5 where
 
+import qualified Data.Map.Strict as M
+import qualified Data.Maybe as Maybe
 import qualified Homework5.ExprT as ExprT
 import qualified Homework5.Parser as Parser
 import qualified Homework5.StackVM as StackVM
@@ -65,4 +67,37 @@ instance Expr StackVM.Program where
 -- ex5 end
 
 -- ex6 start
+class HasVars a where
+  var :: String -> a
+
+data VarExprT = VarExprT String Integer deriving (Eq, Show)
+
+instance Expr VarExprT where
+  lit = VarExprT ""
+  add (VarExprT _ x) (VarExprT _ y) = VarExprT "" $ x + y
+  mul (VarExprT _ x) (VarExprT _ y) = VarExprT "" $ x * y
+
+instance HasVars VarExprT where
+  var = flip VarExprT 0
+
+type VarExpr = M.Map String Integer -> Maybe Integer
+
+instance HasVars VarExpr where
+  var = M.lookup
+
+instance Expr VarExpr where
+  lit x _ = Just x
+  add x y m =
+    if Maybe.isNothing (x m) || Maybe.isNothing (y m)
+    then Nothing
+    else Just $ Maybe.fromJust (x m) + Maybe.fromJust (y m)
+  mul x y m =
+    if Maybe.isNothing (x m) || Maybe.isNothing (y m)
+    then Nothing
+    else Just $ Maybe.fromJust (x m) * Maybe.fromJust (y m)
+
+withVars :: [(String, Integer)]
+  -> (M.Map String Integer -> Maybe Integer)
+  -> Maybe Integer
+withVars vs exp = exp $ M.fromList vs
 -- ex6 end

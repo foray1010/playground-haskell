@@ -52,3 +52,12 @@ spec = Hspec.describe "Homework5" $ do
       StackVM.Mul,
       StackVM.PushI 5,
       StackVM.Add]
+
+  Hspec.it "ex6: withVars" $ do
+    HW.withVars [("x", 6)] (HW.add (HW.lit 3) (HW.var "x"))
+      `Hspec.shouldBe` Just 9
+    HW.withVars [("x", 6)] (HW.add (HW.lit 3) (HW.var "y"))
+      `Hspec.shouldBe` Nothing
+    HW.withVars [("x", 6), ("y", 3)]
+      (HW.mul (HW.var "x") (HW.add (HW.var "y") (HW.var "x")))
+      `Hspec.shouldBe` Just 54
