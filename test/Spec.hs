@@ -5,6 +5,7 @@ import qualified Homework2Spec as HW2Spec
 import qualified Homework3Spec as HW3Spec
 import qualified Homework4Spec as HW4Spec
 import qualified Homework5Spec as HW5Spec
+import qualified Homework6Spec as HW6Spec
 
 main :: IO ()
 main =
@@ -17,3 +18,4 @@ main =
     HW3Spec.spec
     HW4Spec.spec
     HW5Spec.spec
+    HW6Spec.spec
