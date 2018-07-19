@@ -11,12 +11,11 @@ fibs1 = map fib [0..]
 -- ex1 end
 
 -- ex2 start
-prependFib :: [Integer] -> [Integer]
-prependFib (x1:x2:xs) = (x1 + x2):x1:x2:xs
-prependFib (x:xs) = [1, 0]
+appendFibs :: Integer -> Integer -> [Integer]
+appendFibs x y = x:appendFibs y (x + y)
 
 fibs2 :: [Integer]
-fibs2 = map head . iterate prependFib $ [0]
+fibs2 = appendFibs 0 1
 -- ex2 end
 
 -- ex3 start
