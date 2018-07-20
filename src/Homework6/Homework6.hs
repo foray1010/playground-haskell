@@ -29,6 +29,14 @@ streamToList (Cons x y) = x:streamToList y
 -- ex3 end
 
 -- ex4 start
+streamRepeat :: a -> Stream a
+streamRepeat n = Cons n (streamRepeat n)
+
+streamMap :: (a -> b) -> Stream a -> Stream b
+streamMap f (Cons x y) = Cons (f x) (streamMap f y)
+
+streamFromSeed :: (a -> a) -> a -> Stream a
+streamFromSeed f x = Cons (f x) (streamFromSeed f (f x))
 -- ex4 end
 
 -- ex5 start
