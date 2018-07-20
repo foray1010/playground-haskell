@@ -4,6 +4,9 @@ import qualified Test.Hspec as Hspec
 
 import qualified Homework6.Homework6 as HW
 
+genStream :: a -> HW.Stream a
+genStream n = HW.Cons n (genStream n)
+
 spec :: Hspec.Spec
 spec = Hspec.describe "Homework6" $ do
   Hspec.it "ex1: fib" $ do
@@ -20,3 +23,8 @@ spec = Hspec.describe "Homework6" $ do
     take 15 HW.fibs2
       `Hspec.shouldBe`
       [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377]
+
+  Hspec.it "ex2: Stream" $
+    show (genStream 0)
+      `Hspec.shouldBe`
+      "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
