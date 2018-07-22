@@ -40,6 +40,17 @@ streamFromSeed f x = Cons (f x) (streamFromSeed f (f x))
 -- ex4 end
 
 -- ex5 start
+nats :: Stream Integer
+nats = streamFromSeed (+1) (-1)
+
+interleaveStreams :: Stream a -> Stream a -> Stream a
+interleaveStreams (Cons x xs) ys = Cons x (interleaveStreams ys xs)
+
+rulerBy :: Integer -> Stream Integer
+rulerBy n = foldr (interleaveStreams . streamRepeat) (streamRepeat n) [0..n - 1]
+
+ruler :: Stream Integer
+ruler = rulerBy 4
 -- ex5 end
 
 -- ex6 start
