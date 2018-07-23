@@ -57,4 +57,31 @@ ruler = rulerBy 4
 -- ex6 end
 
 -- ex7 start
+newtype Matrix = Matrix (Integer, Integer, Integer, Integer) deriving (Eq, Show)
+
+instance Num Matrix where
+  (+) (Matrix (x1, x2, x3, x4)) (Matrix (y1, y2, y3, y4)) =
+    Matrix (
+      x1 + y1,
+      x2 + y2,
+      x3 + y3,
+      x4 + y4)
+  (-) (Matrix (x1, x2, x3, x4)) (Matrix (y1, y2, y3, y4)) =
+    Matrix (
+      x1 - y1,
+      x2 - y2,
+      x3 - y3,
+      x4 - y4)
+  (*) (Matrix (x1, x2, x3, x4)) (Matrix (y1, y2, y3, y4)) =
+    Matrix (
+      x1 * y1 + x2 * y3,
+      x1 * y2 + x2 * y4,
+      x3 * y1 + x4 * y3,
+      x3 * y2 + x4 * y4)
+
+  fromInteger x = Matrix (x, x, x, x)
+
+fib4 :: Integer -> Integer
+fib4 0 = 0
+fib4 n = (\(Matrix (_, x, _, _)) -> x) $ Matrix (1, 1, 1, 0) ^ n
 -- ex7 end

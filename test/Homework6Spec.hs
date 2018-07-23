@@ -50,3 +50,28 @@ spec = Hspec.describe "Homework6" $ do
     show HW.ruler
       `Hspec.shouldBe`
       "[0,1,0,2,0,1,0,3,0,1,0,2,0,1,0,4,0,1,0,2]"
+
+  Hspec.it "ex7: Matrix + Matrix" $
+    HW.Matrix (1, 2, 3, 4) + HW.Matrix (2, 0, 1, 2)
+      `Hspec.shouldBe`
+      HW.Matrix (3, 2, 4, 6)
+
+  Hspec.it "ex7: Matrix - Matrix" $
+    HW.Matrix (1, 2, 3, 4) - HW.Matrix (2, 0, 1, 2)
+      `Hspec.shouldBe`
+      HW.Matrix (-1, 2, 2, 2)
+
+  Hspec.it "ex7: Matrix * Matrix" $
+    HW.Matrix (1, 2, 3, 4) * HW.Matrix (2, 0, 1, 2)
+      `Hspec.shouldBe`
+      HW.Matrix (4, 4, 10, 8)
+
+  Hspec.it "ex7: Matrix fromInteger" $
+    (1 :: HW.Matrix)
+      `Hspec.shouldBe`
+      HW.Matrix (1, 1, 1, 1)
+
+  Hspec.it "ex7: fib4" $ do
+    HW.fib4 0 `Hspec.shouldBe` 0
+    HW.fib4 1 `Hspec.shouldBe` 1
+    HW.fib4 14 `Hspec.shouldBe` 377
