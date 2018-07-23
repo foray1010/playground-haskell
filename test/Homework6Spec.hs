@@ -51,6 +51,31 @@ spec = Hspec.describe "Homework6" $ do
       `Hspec.shouldBe`
       "[0,1,0,2,0,1,0,3,0,1,0,2,0,1,0,4,0,1,0,2]"
 
+  Hspec.it "ex6: x" $
+    show HW.x
+      `Hspec.shouldBe`
+      "[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+
+  Hspec.it "ex6: Stream + Stream" $
+    show (HW.nats + HW.nats)
+      `Hspec.shouldBe`
+      "[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38]"
+
+  Hspec.it "ex6: Stream negate" $
+    show (negate HW.nats)
+      `Hspec.shouldBe`
+      "[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19]"
+
+  Hspec.it "ex6: Stream * Stream" $
+    show (HW.nats * HW.nats)
+      `Hspec.shouldBe`
+      "[0,0,1,4,10,20,35,56,84,120,165,220,286,364,455,560,680,816,969,1140]"
+
+  Hspec.it "ex6: fibs3" $
+    show HW.fibs3
+      `Hspec.shouldBe`
+      "[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]"
+
   Hspec.it "ex7: Matrix + Matrix" $
     HW.Matrix (1, 2, 3, 4) + HW.Matrix (2, 0, 1, 2)
       `Hspec.shouldBe`

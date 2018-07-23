@@ -1,3 +1,6 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# OPTIONS_GHC -fno-warn-missing-methods #-}
+
 module Homework6.Homework6 where
 
 -- ex1 start
@@ -54,6 +57,22 @@ ruler = rulerBy 4
 -- ex5 end
 
 -- ex6 start
+x :: Stream Integer
+x = Cons 0 (Cons 1 (streamRepeat 0))
+
+instance Num (Stream Integer) where
+  (+) (Cons x xs) (Cons y ys) = Cons (x + y) (xs + ys)
+  (-) (Cons x xs) (Cons y ys) = Cons (x - y) (xs - ys)
+  (*) (Cons x xs) b@(Cons y ys) = Cons (x * y) (streamMap (* x) ys + (xs * b))
+
+  fromInteger n = Cons n (streamRepeat 0)
+
+instance Fractional (Stream Integer) where
+  (/) (Cons x xs) (Cons y ys) = q where
+    q = Cons (div x y) (streamMap (* div 1 y) (xs - q * ys))
+
+fibs3 :: Stream Integer
+fibs3 = x / (1 - x - x ^ 2)
 -- ex6 end
 
 -- ex7 start
