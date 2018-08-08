@@ -17,7 +17,10 @@ tag _ = mempty
 (+++) x y = Append (tag x <> tag y) x y
 -- ex1 end
 
--- ex2 start
+-- ex2.1 start
+getSize :: (Sized.Sized b) => b -> Int
+getSize = Sized.getSize . Sized.size
+
 indexJ :: (Sized.Sized b, Monoid b) =>
   Int -> JoinList b a -> Maybe a
 indexJ 0 (Single _ a) = Just a
@@ -26,11 +29,28 @@ indexJ i (Append m l r)
   | i < sizeL = indexJ i l
   | otherwise = indexJ (i - sizeL) r
   where
-    getSize = Sized.getSize . Sized.size
     size = getSize m
     sizeL = getSize . tag $ l
 indexJ _ _ = Nothing
--- ex2 end
+-- ex2.1 end
+
+-- ex2.2 start
+dropJ :: (Sized.Sized b, Monoid b) =>
+  Int -> JoinList b a -> JoinList b a
+dropJ 0 jl = jl
+dropJ n (Single _ _) = Empty
+dropJ n (Append m l r)
+  | n >= size = Empty
+  | n >= sizeL = dropJ (n - sizeL) r
+  | otherwise = dropJ n l +++ r
+  where
+    size = getSize m
+    sizeL = getSize . tag $ l
+dropJ _ _ = Empty
+-- ex2.2 end
+
+-- ex2.3 start
+-- ex2.3 end
 
 -- ex3 start
 -- ex3 end

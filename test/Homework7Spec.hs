@@ -19,6 +19,9 @@ jlToList (HW.Append _ l1 l2) = jlToList l1 ++ jlToList l2
 
 idealIndexJ i jl = jlToList jl !!? i
 
+idealDropJ n jl = drop n (jlToList jl)
+idealTakeJ n jl = take n (jlToList jl)
+
 fixture1 = HW.Single (Monoid.Product 3) HW.Empty
 fixture2 = HW.Append (Monoid.Product 5) HW.Empty HW.Empty
 fixture3 = HW.Single (Sized.Size 1) 'a'
@@ -59,3 +62,32 @@ spec = Hspec.describe "Homework7" $ do
     HW.indexJ 2 fixture4
       `Hspec.shouldBe`
       idealIndexJ 2 fixture4
+
+  Hspec.it "ex2.2: dropJ" $ do
+    jlToList(HW.dropJ 0 fixture3)
+      `Hspec.shouldBe`
+      idealDropJ 0 fixture3
+
+    jlToList(HW.dropJ 1 fixture3)
+      `Hspec.shouldBe`
+      idealDropJ 1 fixture3
+
+    jlToList(HW.dropJ 2 fixture3)
+      `Hspec.shouldBe`
+      idealDropJ 2 fixture3
+
+    jlToList(HW.dropJ 0 fixture4)
+      `Hspec.shouldBe`
+      idealDropJ 0 fixture4
+
+    jlToList(HW.dropJ 1 fixture4)
+      `Hspec.shouldBe`
+      idealDropJ 1 fixture4
+
+    jlToList(HW.dropJ 2 fixture4)
+      `Hspec.shouldBe`
+      idealDropJ 2 fixture4
+
+    jlToList(HW.dropJ 3 fixture4)
+      `Hspec.shouldBe`
+      idealDropJ 3 fixture4
