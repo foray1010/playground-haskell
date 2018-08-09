@@ -91,3 +91,32 @@ spec = Hspec.describe "Homework7" $ do
     jlToList(HW.dropJ 3 fixture4)
       `Hspec.shouldBe`
       idealDropJ 3 fixture4
+
+  Hspec.it "ex2.3: takeJ" $ do
+    jlToList(HW.takeJ 0 fixture3)
+      `Hspec.shouldBe`
+      idealTakeJ 0 fixture3
+
+    jlToList(HW.takeJ 1 fixture3)
+      `Hspec.shouldBe`
+      idealTakeJ 1 fixture3
+
+    jlToList(HW.takeJ 2 fixture3)
+      `Hspec.shouldBe`
+      idealTakeJ 2 fixture3
+
+    jlToList(HW.takeJ 0 fixture4)
+      `Hspec.shouldBe`
+      idealTakeJ 0 fixture4
+
+    jlToList(HW.takeJ 1 fixture4)
+      `Hspec.shouldBe`
+      idealTakeJ 1 fixture4
+
+    jlToList(HW.takeJ 2 fixture4)
+      `Hspec.shouldBe`
+      idealTakeJ 2 fixture4
+
+    jlToList(HW.takeJ 3 fixture4)
+      `Hspec.shouldBe`
+      idealTakeJ 3 fixture4

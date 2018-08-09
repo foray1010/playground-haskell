@@ -50,6 +50,18 @@ dropJ _ _ = Empty
 -- ex2.2 end
 
 -- ex2.3 start
+takeJ :: (Sized.Sized b, Monoid b) =>
+  Int -> JoinList b a -> JoinList b a
+takeJ 0 _ = Empty
+takeJ n jl@(Single _ _) = jl
+takeJ n jl@(Append m l r)
+  | n >= size = jl
+  | n > sizeL = l +++ takeJ (n - sizeL) r
+  | otherwise = takeJ n l
+  where
+    size = getSize m
+    sizeL = getSize . tag $ l
+takeJ _ _ = Empty
 -- ex2.3 end
 
 -- ex3 start
