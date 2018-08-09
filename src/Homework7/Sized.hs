@@ -20,7 +20,7 @@ instance Sized Size where
 --   (Foo, (Bar, Size))
 --   ...
 -- are all instances of Sized.
-instance Sized b => Sized (a,b) where
+instance Sized b => Sized (a, b) where
   size = size . snd
 
 instance Semigroup Size where

@@ -1,4 +1,7 @@
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 module Homework7.Homework7 where
+
+import qualified Data.Char as Char
 
 import qualified Homework7.Sized as Sized
 
@@ -65,16 +68,33 @@ takeJ _ _ = Empty
 -- ex2.3 end
 
 -- ex3 start
+newtype Score = Score Int
+  deriving (Eq, Ord, Show, Num)
+
+instance Semigroup Score where
+  (<>) = (+)
+
+instance Monoid Score where
+  mempty = Score 0
+
+score :: Char -> Score
+score c
+  | lc `elem` "aeilnorstu" = Score 1
+  | lc `elem` "dg" = Score 2
+  | lc `elem` "bcmp" = Score 3
+  | lc `elem` "fhvwy" = Score 4
+  | lc `elem` "k" = Score 5
+  | lc `elem` "jx" = Score 8
+  | lc `elem` "qz" = Score 10
+  | otherwise = Score 0
+  where lc = Char.toLower c
+
+scoreString :: String -> Score
+scoreString = sum . map score
+
+scoreLine :: String -> JoinList Score String
+scoreLine l = Single (scoreString l) l
 -- ex3 end
 
 -- ex4 start
 -- ex4 end
-
--- ex5 start
--- ex5 end
-
--- ex6 start
--- ex6 end
-
--- ex7 start
--- ex7 end

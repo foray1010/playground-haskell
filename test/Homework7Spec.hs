@@ -120,3 +120,10 @@ spec = Hspec.describe "Homework7" $ do
     jlToList(HW.takeJ 3 fixture4)
       `Hspec.shouldBe`
       idealTakeJ 3 fixture4
+
+  Hspec.it "ex3: scoreLine" $
+    HW.scoreLine "yay " HW.+++ HW.scoreLine "haskell!"
+      `Hspec.shouldBe`
+      HW.Append (HW.Score 23)
+        (HW.Single (HW.Score 9) "yay ")
+        (HW.Single (HW.Score 14) "haskell!")
