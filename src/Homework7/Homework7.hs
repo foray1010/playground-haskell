@@ -1,14 +1,20 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE FlexibleInstances, GeneralizedNewtypeDeriving, TypeSynonymInstances #-}
 module Homework7.Homework7 where
 
 import qualified Data.Char as Char
 
+import qualified Homework7.Buffer as Buffer
 import qualified Homework7.Sized as Sized
 
 data JoinList m a = Empty
   | Single m a
   | Append m (JoinList m a) (JoinList m a)
   deriving (Eq, Show)
+
+jlToList :: JoinList m a -> [a]
+jlToList Empty = []
+jlToList (Single _ a) = [a]
+jlToList (Append _ l1 l2) = jlToList l1 ++ jlToList l2
 
 -- ex1 start
 tag :: Monoid m => JoinList m a -> m
@@ -97,4 +103,19 @@ scoreLine l = Single (scoreString l) l
 -- ex3 end
 
 -- ex4 start
+scoreLineWithSize :: String -> JoinList (Score, Sized.Size) String
+scoreLineWithSize l = Single (scoreString l, Sized.Size 1) l
+
+instance Buffer.Buffer (JoinList (Score, Sized.Size) String) where
+  toString = unlines . jlToList
+
+  fromString = foldr ((+++) . scoreLineWithSize) Empty . lines
+
+  line = indexJ
+
+  replaceLine n l jl = takeJ (n - 1) jl +++ Buffer.fromString l +++ dropJ n jl
+
+  numLines = Sized.getSize . snd . tag
+
+  value = read . show . fst . tag
 -- ex4 end

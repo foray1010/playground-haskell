@@ -12,15 +12,10 @@ _ !!? i | i < 0 = Nothing
 (x:xs) !!? 0 = Just x
 (x:xs) !!? i = xs !!? (i-1)
 
-jlToList :: HW.JoinList m a -> [a]
-jlToList HW.Empty = []
-jlToList (HW.Single _ a) = [a]
-jlToList (HW.Append _ l1 l2) = jlToList l1 ++ jlToList l2
+idealIndexJ i jl = HW.jlToList jl !!? i
 
-idealIndexJ i jl = jlToList jl !!? i
-
-idealDropJ n jl = drop n (jlToList jl)
-idealTakeJ n jl = take n (jlToList jl)
+idealDropJ n jl = drop n (HW.jlToList jl)
+idealTakeJ n jl = take n (HW.jlToList jl)
 
 fixture1 = HW.Single (Monoid.Product 3) HW.Empty
 fixture2 = HW.Append (Monoid.Product 5) HW.Empty HW.Empty
@@ -64,60 +59,60 @@ spec = Hspec.describe "Homework7" $ do
       idealIndexJ 2 fixture4
 
   Hspec.it "ex2.2: dropJ" $ do
-    jlToList(HW.dropJ 0 fixture3)
+    HW.jlToList(HW.dropJ 0 fixture3)
       `Hspec.shouldBe`
       idealDropJ 0 fixture3
 
-    jlToList(HW.dropJ 1 fixture3)
+    HW.jlToList(HW.dropJ 1 fixture3)
       `Hspec.shouldBe`
       idealDropJ 1 fixture3
 
-    jlToList(HW.dropJ 2 fixture3)
+    HW.jlToList(HW.dropJ 2 fixture3)
       `Hspec.shouldBe`
       idealDropJ 2 fixture3
 
-    jlToList(HW.dropJ 0 fixture4)
+    HW.jlToList(HW.dropJ 0 fixture4)
       `Hspec.shouldBe`
       idealDropJ 0 fixture4
 
-    jlToList(HW.dropJ 1 fixture4)
+    HW.jlToList(HW.dropJ 1 fixture4)
       `Hspec.shouldBe`
       idealDropJ 1 fixture4
 
-    jlToList(HW.dropJ 2 fixture4)
+    HW.jlToList(HW.dropJ 2 fixture4)
       `Hspec.shouldBe`
       idealDropJ 2 fixture4
 
-    jlToList(HW.dropJ 3 fixture4)
+    HW.jlToList(HW.dropJ 3 fixture4)
       `Hspec.shouldBe`
       idealDropJ 3 fixture4
 
   Hspec.it "ex2.3: takeJ" $ do
-    jlToList(HW.takeJ 0 fixture3)
+    HW.jlToList(HW.takeJ 0 fixture3)
       `Hspec.shouldBe`
       idealTakeJ 0 fixture3
 
-    jlToList(HW.takeJ 1 fixture3)
+    HW.jlToList(HW.takeJ 1 fixture3)
       `Hspec.shouldBe`
       idealTakeJ 1 fixture3
 
-    jlToList(HW.takeJ 2 fixture3)
+    HW.jlToList(HW.takeJ 2 fixture3)
       `Hspec.shouldBe`
       idealTakeJ 2 fixture3
 
-    jlToList(HW.takeJ 0 fixture4)
+    HW.jlToList(HW.takeJ 0 fixture4)
       `Hspec.shouldBe`
       idealTakeJ 0 fixture4
 
-    jlToList(HW.takeJ 1 fixture4)
+    HW.jlToList(HW.takeJ 1 fixture4)
       `Hspec.shouldBe`
       idealTakeJ 1 fixture4
 
-    jlToList(HW.takeJ 2 fixture4)
+    HW.jlToList(HW.takeJ 2 fixture4)
       `Hspec.shouldBe`
       idealTakeJ 2 fixture4
 
-    jlToList(HW.takeJ 3 fixture4)
+    HW.jlToList(HW.takeJ 3 fixture4)
       `Hspec.shouldBe`
       idealTakeJ 3 fixture4
 
