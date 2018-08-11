@@ -11,6 +11,11 @@ glCons emp@E.Emp { E.empFun = fun } (E.GL empl totalFun) =
 -- ex1.1 end
 
 -- ex1.2 start
+instance Semigroup E.GuestList where
+  (<>) (E.GL lEmpl lFun) (E.GL rEmpl rFun) = E.GL (lEmpl ++ rEmpl) (lFun + rFun)
+
+instance Monoid E.GuestList where
+  mempty = E.GL [] 0
 -- ex1.2 end
 
 -- ex1.3 start
