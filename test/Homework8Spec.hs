@@ -13,6 +13,10 @@ fixture2 = E.GL [E.Emp {
   E.empName = "b",
   E.empFun = 2
 }] 2
+fixture3 = E.GL [E.Emp {
+  E.empName = "c",
+  E.empFun = 3
+}] 3
 
 spec :: Hspec.Spec
 spec = Hspec.describe "Homework8" $ do
@@ -37,3 +41,7 @@ spec = Hspec.describe "Homework8" $ do
         E.empName = "b",
         E.empFun = 2
       }] 4
+
+  Hspec.it "ex1.3: moreFun" $ do
+    HW.moreFun fixture2 fixture3 `Hspec.shouldBe` fixture3
+    HW.moreFun fixture3 fixture2 `Hspec.shouldBe` fixture3

@@ -19,6 +19,10 @@ instance Monoid E.GuestList where
 -- ex1.2 end
 
 -- ex1.3 start
+moreFun :: E.GuestList -> E.GuestList -> E.GuestList
+moreFun lgl@(E.GL _ lFun) rgl@(E.GL _ rFun)
+  | lFun > rFun = lgl
+  | otherwise = rgl
 -- ex1.3 end
 
 -- ex2 start
