@@ -23,6 +23,9 @@ tag (Append m _ _) = m
 tag _ = mempty
 
 (+++) :: Monoid m => JoinList m a -> JoinList m a -> JoinList m a
+(+++) Empty Empty = Empty
+(+++) Empty y = y
+(+++) x Empty = x
 (+++) x y = Append (tag x <> tag y) x y
 -- ex1 end
 
@@ -103,7 +106,7 @@ scoreLine l = Single (scoreString l) l
 -- ex3 end
 
 -- ex4 start
-scoreLineWithSize :: String -> JoinList (Score, Sized.Size) String
+getScore (Score i) = i
 scoreLineWithSize l = Single (scoreString l, Sized.Size 1) l
 
 instance Buffer.Buffer (JoinList (Score, Sized.Size) String) where
@@ -113,9 +116,9 @@ instance Buffer.Buffer (JoinList (Score, Sized.Size) String) where
 
   line = indexJ
 
-  replaceLine n l jl = takeJ (n - 1) jl +++ Buffer.fromString l +++ dropJ n jl
+  replaceLine n l jl = takeJ n jl +++ Buffer.fromString l +++ dropJ (n + 1) jl
 
   numLines = Sized.getSize . snd . tag
 
-  value = read . show . fst . tag
+  value = getScore . fst . tag
 -- ex4 end

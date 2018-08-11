@@ -3,6 +3,7 @@ module Homework7Spec where
 import qualified Data.Monoid as Monoid
 import qualified Test.Hspec as Hspec
 
+import qualified Homework7.Buffer as Buffer
 import qualified Homework7.Homework7 as HW
 import qualified Homework7.Sized as Sized
 
@@ -23,6 +24,9 @@ fixture3 = HW.Single (Sized.Size 1) 'a'
 fixture4 = HW.Append (Sized.Size 2)
   (HW.Single (Sized.Size 1) 'b')
   (HW.Single (Sized.Size 1) 'c')
+fixture5 = HW.Append (HW.Score 5, Sized.Size 2)
+  (HW.Single (HW.Score 1, Sized.Size 1) "a")
+  (HW.Single (HW.Score 4, Sized.Size 1) "f")
 
 spec :: Hspec.Spec
 spec = Hspec.describe "Homework7" $ do
@@ -122,3 +126,31 @@ spec = Hspec.describe "Homework7" $ do
       HW.Append (HW.Score 23)
         (HW.Single (HW.Score 9) "yay ")
         (HW.Single (HW.Score 14) "haskell!")
+
+  Hspec.it "ex4: Buffer.toString" $
+    Buffer.toString fixture5
+      `Hspec.shouldBe`
+      "a\nf\n"
+
+  Hspec.it "ex4: Buffer.fromString" $
+    Buffer.fromString "a\nf\n"
+      `Hspec.shouldBe`
+      fixture5
+
+  Hspec.it "ex4: Buffer.lines" $
+    Buffer.line 1 fixture5
+      `Hspec.shouldBe`
+      Just "f"
+
+  Hspec.it "ex4: Buffer.replaceLine" $
+    Buffer.replaceLine 0 "b" fixture5
+      `Hspec.shouldBe`
+      HW.Append (HW.Score 7, Sized.Size 2)
+        (HW.Single (HW.Score 3, Sized.Size 1) "b")
+        (HW.Single (HW.Score 4, Sized.Size 1) "f")
+
+  Hspec.it "ex4: Buffer.numLines" $
+    Buffer.numLines fixture5 `Hspec.shouldBe` 2
+
+  Hspec.it "ex4: Buffer.value" $
+    Buffer.value fixture5 `Hspec.shouldBe` 5
