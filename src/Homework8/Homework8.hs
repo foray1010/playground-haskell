@@ -2,6 +2,8 @@
 
 module Homework8.Homework8 where
 
+import qualified Data.Tree as T
+
 import qualified Homework8.Employee as E
 
 -- ex1.1 start
@@ -26,6 +28,9 @@ moreFun lgl@(E.GL _ lFun) rgl@(E.GL _ rFun)
 -- ex1.3 end
 
 -- ex2 start
+treeFold :: (a -> [b] -> b) -> T.Tree a -> b
+treeFold f T.Node { T.rootLabel = label, T.subForest = trees } =
+  f label (map (treeFold f) trees)
 -- ex2 end
 
 -- ex3 start

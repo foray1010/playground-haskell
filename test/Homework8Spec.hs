@@ -45,3 +45,8 @@ spec = Hspec.describe "Homework8" $ do
   Hspec.it "ex1.3: moreFun" $ do
     HW.moreFun fixture2 fixture3 `Hspec.shouldBe` fixture3
     HW.moreFun fixture3 fixture2 `Hspec.shouldBe` fixture3
+
+  Hspec.it "ex2: treeFold" $ do
+    let foldFun = HW.treeFold (\(E.Emp _ fun) -> (+fun) . sum)
+    foldFun E.testCompany `Hspec.shouldBe` 46
+    foldFun E.testCompany2 `Hspec.shouldBe` 47
